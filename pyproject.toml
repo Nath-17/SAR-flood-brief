@@ -1,0 +1,65 @@
+[project]
+name = "floodbrief"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Nathan"}
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+floodbrief = "floodbrief:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
+
+
+# ─────────────────────────────────────────────
+# RUFF setup
+# ─────────────────────────────────────────────
+[tool.ruff]
+line-length = 88  # Max line length (same as black)
+
+[tool.ruff.lint]
+select = [
+    "E",   # FLAKE8 (pycodestyle, errors): PEP 8 violations
+    "W",   # FLAKE8 (pycodestyle, warnings): trailing whitespace, etc.
+    "F",   # FLAKE8 (pyflakes): real bugs (undefined name, unused import)
+    "I",   # ISORT: import sorting and grouping
+    "B",   # FLAKE8-BUGBEAR: subtle pitfalls (mutable default argument...)
+    "UP",  # PYUPGRADE: modern syntax (list[int], f-strings, X | None)
+]
+ignore = [
+    "E501", # Line too long: handled by the formatter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["floodbrief"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.format]
+quote-style = "double"        # Double quotes, same as BLACK
+indent-style = "space"        # 4 spaces, same as BLACK
+docstring-code-format = true  # formats code examples inside docstrings
+
+# ─────────────────────────────────────────────
+# PYTEST setup
+# ─────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers"]
+markers = [
+    "network: test requiring internet access (STAC, Planetary Computer)",
+]
