@@ -8,3 +8,29 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Secrets
+.env
+
+# Geospatial data & model artifacts (never in Git)
+data/
+*.tif
+*.tiff
+*.nc
+*.zarr/
+*.onnx
+*.pt
+*.pth
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Tools caches
+.pytest_cache/
+.ruff_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
