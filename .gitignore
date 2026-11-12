@@ -13,7 +13,7 @@ wheels/
 .env
 
 # Geospatial data & model artifacts (never in Git)
-data/
+/data/
 *.tif
 *.tiff
 *.nc
